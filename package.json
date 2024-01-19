@@ -1,0 +1,20 @@
+{
+  "name": "depthkit-meshsequence-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx vite --host",
+    "build": "npx vite build --base ./"
+  },
+  "author": "Scatter",
+  "license": "MIT",
+  "dependencies": {
+    "rvfc-polyfill": "^1.0.7",
+    "three": "^0.159.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.7"
+  }
+}
