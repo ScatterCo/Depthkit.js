@@ -2,11 +2,20 @@
   "name": "depthkit-meshsequence-player",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "files":["dist"],
+  "main":"./dist/depthkit-meshsequence-player.umd.js",
+  "module":"./dist/depthkit-meshsequence-player.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/depthkit-meshsequence-player.es.js",
+      "require": "./dist/depthkit-meshsequence-player.umd.js"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx vite --host",
-    "build": "npx vite build --base ./"
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "author": "Scatter",
   "license": "MIT",
