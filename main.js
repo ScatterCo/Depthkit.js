@@ -11,7 +11,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const dracoLoader = new DRACOLoader();
 
 // Specify path to a folder containing WASM/JS decoding libraries.
-dracoLoader.setDecoderPath('./static/libs/draco/');
+dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
 
 // Optional: Pre-fetch Draco WASM/JS module.
 dracoLoader.preload();
