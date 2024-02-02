@@ -1,14 +1,14 @@
 {
-  "name": "depthkit-meshsequence-player",
+  "name": "depthkit-three-meshsequence-player",
   "version": "1.0.0",
   "description": "",
   "files":["dist"],
-  "main":"./dist/depthkit-meshsequence-player.umd.js",
-  "module":"./dist/depthkit-meshsequence-player.es.js",
+  "main":"./dist/depthkit-three-meshsequence-player.umd.js",
+  "module":"./dist/depthkit-three-meshsequence-player.es.js",
   "exports": {
     ".": {
-      "import": "./dist/depthkit-meshsequence-player.es.js",
-      "require": "./dist/depthkit-meshsequence-player.umd.js"
+      "import": "./dist/depthkit-three-meshsequence-player.es.js",
+      "require": "./dist/depthkit-three-meshsequence-player.umd.js"
     }
   },
   "scripts": {

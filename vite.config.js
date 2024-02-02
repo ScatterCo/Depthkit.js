@@ -5,8 +5,8 @@ module.exports = defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'lib/main.js'),
-      name: 'depthkit-meshsequence-player',
-      fileName: (format) => `depthkit-meshsequence-player.${format}.js`
+      name: 'depthkit-three-meshsequence-player',
+      fileName: (format) => `depthkit-three-meshsequence-player.${format}.js`
     }
   }
 });
