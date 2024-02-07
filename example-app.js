@@ -1,7 +1,7 @@
 import 'rvfc-polyfill';
 
 import * as THREE from 'three';
-import DepthkitMeshSequencePlayer from './lib/main.js'
+import * as Depthkit from './lib/main.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
@@ -72,19 +72,27 @@ if (urlParams.get('c') != undefined) {
 
 const clipPath = `${baseURL}/${clipName}`;
 
-const depthkit = new DepthkitMeshSequencePlayer({
-    clip: clipPath,
-    autoplay: true,
-    loop: true
-});
-
 // use query parameter 'wireframe' to enable wireframe preview
 const showWireframe = (urlParams.get('wireframe') !== null);
 
-depthkit.mesh.castShadow = true;
-depthkit.material.wireframe = showWireframe;
+Depthkit.setModuleConfig({debug: true});
 
-scene.add(depthkit);
+let addedToScene = false;
+const readyStateChangeCallback = () => {
+	if (!addedToScene && depthkit.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+		depthkit.mesh.castShadow = true;
+		depthkit.material.wireframe = showWireframe;
+		scene.add(depthkit);
+		addedToScene = true;
+	}
+};
+
+const depthkit = new Depthkit.DracoMeshSequencePlayer({
+    clip: clipPath,
+    autoplay: true,
+    loop: true,
+	readyStateChangeCallback: readyStateChangeCallback
+});
 
 function animate() {
 	requestAnimationFrame( animate );
