@@ -40,7 +40,7 @@ import * as Depthkit from 'depthkit-meshsequence-player.es.js'
 
 ### Loading a mesh sequence
 
-Lets imagine you have an asset hosted relative to your script in a folder called `clips`, such that the video is at `./clips/Clip_Name.mp4` and the first mesh frame is at `clips/Clip_Name/mesh-f00001.drc`.
+Lets imagine you have an asset hosted relative to your script in a folder called `clips`, such that the video is at `./clips/Clip_Name.mp4` and the first mesh frame is at `./clips/Clip_Name/mesh-f00001.drc`.
 
 There are a few different ways you can load the sequence:
 
