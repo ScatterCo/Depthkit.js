@@ -1,3 +1,5 @@
+![Build Status](https://github.com/ScatterCo/Depthkit.js/actions/workflows/npm.yml/badge.svg)
+
 # Depthkit.js
 
 Three.js module capable of playing back Draco compressed mesh sequences + video texture. These can be exported directly from [Depthkit](https://depthkit.tv).
