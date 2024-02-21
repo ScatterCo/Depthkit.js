@@ -1,14 +1,19 @@
 {
-  "name": "depthkit-three-meshsequence-player",
+  "name": "depthkit",
   "version": "1.0.0",
   "description": "",
-  "files":["dist"],
-  "main":"./dist/depthkit-three-meshsequence-player.umd.js",
-  "module":"./dist/depthkit-three-meshsequence-player.es.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ScatterCo/Depthkit.js.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/depthkit-three-meshsequence-player.es.js",
-      "require": "./dist/depthkit-three-meshsequence-player.umd.js"
+      "import": "./dist/depthkit.es.js",
+      "require": "./dist/depthkit.umd.js"
     }
   },
   "scripts": {

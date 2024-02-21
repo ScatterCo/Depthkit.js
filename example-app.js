@@ -97,6 +97,8 @@ const depthkit = new Depthkit.DracoMeshSequencePlayer({
 function animate() {
 	requestAnimationFrame( animate );
 
+    depthkit.updateReadyState();
+
 	renderer.render( scene, camera );
 }
 

@@ -1,12 +1,16 @@
-# Depthkit Three.js Draco Meshsequence Player
+# Depthkit.js
 
-Example Three.js scene capable of playing back Draco compressed mesh sequences + video texture.
+Three.js module capable of playing back Draco compressed mesh sequences + video texture. These can be exported directly from [Depthkit](https://depthkit.tv).
 
 ## Installation
 
+### Git
 1. Clone this repo
     - Note you will need to have git LFS installed to fetch the demo assets in the `static` folder
-3. Install dependencies: `npm install`
+2. Install dependencies: `npm install`
+
+### NPM
+- Coming soon
 
 ## Development
 
@@ -35,7 +39,7 @@ Depthkit will export the assets in the following folder structure:
 ### Import the module
 
 ```
-import * as Depthkit from 'depthkit-meshsequence-player.es.js'
+import * as Depthkit from 'depthkit'
 ```
 
 ### Loading a mesh sequence
@@ -44,11 +48,25 @@ Lets imagine you have an asset hosted relative to your script in a folder called
 
 There are a few different ways you can load the sequence:
 
+#### Load a clip at instantiation time, along with other configuration options
 ```js
-const clipPath = './clips/Clip_Name';
+const depthkit = new Depthkit.DracoMeshSequencePlayer({
+    clip: clipPath,
+    autoplay: true, // this automatically sets muted to true on the video
+    loop: true,
+    readyStateChangeCallback: () => {
+        if (!addedToScene && depthkit.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+            depthkit.mesh.castShadow = true;
+            depthkit.material.wireframe = showWireframe;
+            scene.add(depthkit);
+            addedToScene = true;
+        }
+    }
+});
+```
 
-// Load the clip after object instantiation.
-// This will not auto-play the clip, but will create the video, and preload some of the mesh sequence.
+#### Alternatively, you can load a clip after instantiation
+```js
 const depthkit = new Depthkit.DracoMeshSequencePlayer();
 
 // If you want the clip to auto-play, you can configure that prior to loading the clip
@@ -70,32 +88,21 @@ depthkit.readyStateChangeCallback = () => {
 };
 
 // Now we're ready to acutally load the clip!
-depthkit.loadClip(clipPath);
+depthkit.loadClip('./clips/Clip_Name');
 
-```
-
-```js
-// Load the clip at instantiation time, along with other configuration options
-const depthkit = new Depthkit.DracoMeshSequencePlayer({
-    clip: clipPath,
-    autoplay: true, // this automatically sets muted to true on the video
-    loop: true,
-    readyStateChangeCallback: () => {
-        if (!addedToScene && depthkit.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-            depthkit.mesh.castShadow = true;
-            depthkit.material.wireframe = showWireframe;
-            scene.add(depthkit);
-            addedToScene = true;
-        }
-    }
-});
 ```
 
 ### Controlling playback
+
 The mesh sequence playback is tied to the video playback, so use the video element directly to control playback:
+
 ```js
 depthkit.video.play();
 depthkit.video.pause();
 ```
+
+### Updating the player's `readyState`
+
+the `readyState` property should be automatically updated whenever a new mesh has been loaded, or new video data has been loaded (via the video element's `loadeddata` event). However, in some cases the video element's `loadeddata` event is not properly fired, so it is best to explicitly call the player's `updateReadyState()` method directly in a polling fasion to ensure that the `readyStateChangeCallback` is called appropriately. A good place to do this is within the `requestAnimationFrame` callback.
 
 See the [example app](./example-app.js) for more details.

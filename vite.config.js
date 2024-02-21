@@ -1,12 +1,21 @@
-const path = require('path')
-const { defineConfig } = require('vite')
+import path from 'path'
 
-module.exports = defineConfig({
+export default {
   build: {
     lib: {
       entry: path.resolve(__dirname, 'lib/main.js'),
-      name: 'depthkit-three-meshsequence-player',
-      fileName: (format) => `depthkit-three-meshsequence-player.${format}.js`
+      name: 'depthkit',
+      fileName: (format) => `depthkit.${format}.js`
+    },
+    rollupOptions: {
+      external: [
+        'three'
+      ],
+      output: {
+        globals: {
+          three: 'THREE'
+        }
+      }
     }
   }
-});
+}
