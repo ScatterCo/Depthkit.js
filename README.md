@@ -12,7 +12,8 @@ Three.js module capable of playing back Draco compressed mesh sequences + video 
 2. Install dependencies: `npm install`
 
 ### NPM
-- Coming soon
+- `npm install depthkit`
+- https://www.npmjs.com/package/depthkit
 
 ## Development
 
